@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <!--je peux importer des fichiers css disponibles dans le dossier : static (dossier accessible publiquement) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+{{#trucRecupereDepuisAPI}}
+    <h1>Ci dessous ce que j'ai recuperé depuis GET https://api.restful-api.dev/objects/7 : </h1>
+
+    <p>
+        {{trucRecupereDepuisAPI}} <br>
+        Id: {{trucRecupereDepuisAPI.id}} <br>
+        Name : {{trucRecupereDepuisAPI.name}}
+    </p>
+
+{{/trucRecupereDepuisAPI}}
+
+</body>
+</html>
