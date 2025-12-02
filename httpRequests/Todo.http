@@ -11,7 +11,7 @@ GET http://localhost:8080/todo?search=eni
 POST http://localhost:8080/todo
 Content-Type: application/json
 
-{"name": "faire une démo"}
+{"name": "test"}
 ###
 
 ### Supprimer une tâche

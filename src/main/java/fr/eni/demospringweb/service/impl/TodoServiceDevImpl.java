@@ -1,6 +1,8 @@
 package fr.eni.demospringweb.service.impl;
 
+import fr.eni.demospringweb.aop.GlobalExceptionHandler;
 import fr.eni.demospringweb.bo.Todo;
+import fr.eni.demospringweb.service.BusinessException;
 import fr.eni.demospringweb.service.TodoService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -18,8 +20,8 @@ public class TodoServiceDevImpl implements TodoService {
     List<Todo> listeTodo = new ArrayList<>();
 
     public TodoServiceDevImpl() {
-        listeTodo.add(new Todo(1L, "faire les courses"));
-        listeTodo.add(new Todo(2L, "suivre cours ENI"));
+        listeTodo.add(new Todo(1L, "faire les courses", null));
+        listeTodo.add(new Todo(2L, "suivre cours ENI", null));
     }
 
     @Override
@@ -41,6 +43,15 @@ public class TodoServiceDevImpl implements TodoService {
 
     @Override
     public Todo addTodo(Todo todo) {
+
+        if (listeTodo.size() == 10){
+            /**
+             * Notre Exception de type BusinessException va être pris en charge par notre GlobalExceptionHandler
+             * qui va renvoyer une réponse formatée correctement pour être exploité par le client de la même manière que les erreurs de validation de Bean
+              */
+
+            throw new BusinessException("Pas plus de 10 taches en même temps !");
+        }
 
         if (listeTodo.isEmpty()){
             // je définit l'id de ma tâche à 1

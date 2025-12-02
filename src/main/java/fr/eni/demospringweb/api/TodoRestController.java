@@ -5,6 +5,7 @@ import fr.eni.demospringweb.service.TodoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -46,7 +47,7 @@ public class TodoRestController {
      */
     @PostMapping
     @Operation(summary = "créer une tâche")
-    public Todo postTodo(@RequestBody Todo todo){
+    public Todo postTodo(@Valid @RequestBody Todo todo){
         return todoService.addTodo(todo);
     }
 
